@@ -1,0 +1,331 @@
+:root {
+    --box-red: #a4161a;
+    --lid-red: #660708;
+    --gold: #d4af37;
+}
+
+body {
+    background-color: #fff5f5;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.countdown-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#timer {
+    font-size: 2rem;
+    color: var(--box-red);
+    font-weight: bold;
+}
+
+/* --- The Gift Box --- */
+.gift-box {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+}
+
+.box-body {
+    position: absolute;
+    bottom: 0;
+    width: 150px;
+    height: 120px;
+    background: var(--box-red);
+    border-radius: 5px;
+}
+
+.box-lid {
+    position: absolute;
+    top: -10px;
+    left: -5px;
+    width: 160px;
+    height: 30px;
+    background: var(--lid-red);
+    z-index: 5;
+    border-radius: 3px;
+    transition: transform 0.5s ease;
+}
+
+/* Ribbons */
+.ribbon-v {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 100%;
+    background: var(--gold);
+}
+
+.ribbon-h {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 25px;
+    background: var(--gold);
+}
+
+/* Bow */
+.bow {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.bow-left, .bow-right {
+    width: 40px; height: 40px;
+    background: var(--gold);
+    border-radius: 50% 50% 0 50%;
+    display: inline-block;
+}
+.bow-right { border-radius: 50% 50% 50% 0; margin-left: -10px; }
+
+/* Shake Animation */
+.shake {
+    animation: shakeEffect 0.5s ease-in-out;
+}
+
+@keyframes shakeEffect {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(-8deg); }
+    40% { transform: rotate(8deg); }
+    60% { transform: rotate(-5deg); }
+    80% { transform: rotate(5deg); }
+}
+
+/* Opening Animation */
+.open-box .box-lid {
+    transform: translateY(-100px) rotate(-15deg);
+    opacity: 0;
+}
+.open-box .bow {
+    transform: translateX(-50%) translateY(-100px);
+    opacity: 0;
+}   
+
+:root {
+    --v-pink: #ff4d6d;
+    --v-red: #c9184a;
+    --v-dark: #800f2f;
+    --v-gold: #ffb703;
+    --v-soft: #fff0f3;
+}
+
+body {
+    background: radial-gradient(circle, var(--v-soft), #ffccd5);
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* --- The V-Day Box --- */
+.box-body {
+    background: linear-gradient(135deg, var(--v-red), var(--v-dark));
+    border: 2px solid var(--v-dark);
+}
+
+.box-lid {
+    background: var(--v-dark);
+    border-bottom: 3px solid var(--v-gold);
+}
+
+.box-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    z-index: 4;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+/* --- The Countdown Style --- */
+#status-text {
+    color: var(--v-dark);
+    font-family: 'Sacramento', cursive; /* Use a romantic script font */
+    font-size: 2.5rem;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+#timer {
+    color: var(--v-red);
+    background: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(201, 24, 74, 0.2);
+    display: inline-block;
+}
+
+/* --- Glowing "Ready" State --- */
+.ready .gift-box {
+    animation: valentine-glow 2s infinite alternate;
+}
+
+@keyframes valentine-glow {
+    from { filter: drop-shadow(0 0 10px var(--v-pink)); }
+    to { filter: drop-shadow(0 0 25px var(--v-red)); }
+}
+
+/* --- Subtle Floating Animation --- */
+.gift-box {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+
+#custom-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 240, 243, 0.8); /* Soft pink tint */
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+#custom-alert.alert-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.alert-content {
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(201, 24, 74, 0.2);
+    border: 2px solid var(--v-pink);
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#custom-alert.alert-visible .alert-content {
+    transform: scale(1);
+}
+
+.alert-heart {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+    animation: pulse 1s infinite;
+}
+
+.sweet-text {
+    font-family: 'Sacramento', cursive;
+    font-size: 1.8rem;
+    color: var(--v-red);
+    margin-top: 10px;
+}
+
+.chocolate-bar {
+    position: relative;
+    width: 70px;
+    height: 110px;
+    background: #3d2419; /* Deep chocolate */
+    border-radius: 4px;
+    /* Realistic floor shadow */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15), 
+                2px 2px 5px rgba(0, 0, 0, 0.1);
+    transform: rotate(12deg); 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    margin-bottom: 5px; /* Fine-tune the "ground" level */
+    transform: rotate(12deg);
+}
+
+/* Chocolate squares styling */
+.choco-squares {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 6px;
+    height: 50%;
+}
+
+.square {
+    background: #4b2c20;
+    border-radius: 2px;
+    border-bottom: 2px solid #2a1811;
+    border-right: 2px solid #2a1811;
+    box-shadow: inset 2px 2px 4px rgba(255,255,255,0.05);
+}
+
+/* Foil wrapper styling */
+.choco-wrapper {
+    position: absolute;
+    bottom: -5px;
+    width: 110%; /* Slightly wider to look wrapped */
+    left: -5%;
+    height: 70%;
+    background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 50%, #d1d5db 100%);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(-2deg); /* Slightly offset foil */
+}
+
+/* Crinkle effect on foil */
+.foil-crinkle {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        rgba(255,255,255,0.2) 3px,
+        transparent 4px
+    );
+    opacity: 0.5;
+}
+
+.choco-label {
+    background: #c9184a;
+    color: white;
+    font-size: 0.6rem;
+    padding: 3px 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+.chocolate-bar:hover {
+    transform: rotate(8deg) scale(1.05) translateY(-5px);
+}
+
+.gift-section {
+    display: flex;
+    flex-direction: row; /* Horizontal alignment */
+    align-items: flex-end; /* Keeps both on the "ground" */
+    justify-content: center; /* Centers the whole group on the screen */
+    gap: 30px; /* Adjust this to move the bar closer or further from the box */
+    position: relative;
+    padding-bottom: 20px; /* Space for the shadow */
+}
